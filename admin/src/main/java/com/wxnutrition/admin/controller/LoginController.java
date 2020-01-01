@@ -18,7 +18,7 @@ public class LoginController {
     @RequestMapping("/login")
     @ResponseBody
     public Result login(String username, String password){
-        // System.out.println(username + "....." + password);
+        System.out.println(username + "....." + password);
         User user = loginService.login(username, password);
         if (user != null) {
             if (!user.getPassword().equals(password)) {
