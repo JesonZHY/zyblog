@@ -12,7 +12,7 @@ ENV TERM xterm
 
 #pinyougou-service配置
 ADD admin.war /usr/local/tomcat/webapps
-ADD server.xml /usr/local/tomcat/conf
+
 EXPOSE 8080 22
 
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
