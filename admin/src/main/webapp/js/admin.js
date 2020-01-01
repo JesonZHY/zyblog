@@ -25,7 +25,7 @@ $(document).ready(function () {
                 if (result.success == false){
                     alert(result.message);
                 } else if (result.success == true) {
-                    window.location.href = "../admin/manager.html";
+                    window.location.href = "./manager.html";
                 }
             }
         })
