@@ -3,67 +3,50 @@ package com.wxnutrition.admin.pojo;
 import java.util.Date;
 
 public class User {
-    private String id;
+    private String userId;
 
-    private String username;
+    private String userName;
 
-    private String password;
+    private String userPassword;
 
     private String userPhoto;
 
     private String userEmail;
 
-    private Date userRegistrationTime;
+    private Date userRetistrationTime;
 
     private Date userBirthday;
 
     private Integer userAge;
 
-    private Integer userMobileNum;
+    private String userMobileNum;
 
     private String userNickname;
 
     private String userDesc;
 
-    public User() {
+    public String getUserId() {
+        return userId;
     }
 
-    public User(String id, String username, String password, String userPhoto, String userEmail, Date userRegistrationTime, Date userBirthday, Integer userAge, Integer userMobileNum, String userNickname, String userDesc) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.userPhoto = userPhoto;
-        this.userEmail = userEmail;
-        this.userRegistrationTime = userRegistrationTime;
-        this.userBirthday = userBirthday;
-        this.userAge = userAge;
-        this.userMobileNum = userMobileNum;
-        this.userNickname = userNickname;
-        this.userDesc = userDesc;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getId() {
-        return id;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword == null ? null : userPassword.trim();
     }
 
     public String getUserPhoto() {
@@ -71,7 +54,7 @@ public class User {
     }
 
     public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
+        this.userPhoto = userPhoto == null ? null : userPhoto.trim();
     }
 
     public String getUserEmail() {
@@ -79,15 +62,15 @@ public class User {
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public Date getUserRegistrationTime() {
-        return userRegistrationTime;
+    public Date getUserRetistrationTime() {
+        return userRetistrationTime;
     }
 
-    public void setUserRegistrationTime(Date userRegistrationTime) {
-        this.userRegistrationTime = userRegistrationTime;
+    public void setUserRetistrationTime(Date userRetistrationTime) {
+        this.userRetistrationTime = userRetistrationTime;
     }
 
     public Date getUserBirthday() {
@@ -106,11 +89,11 @@ public class User {
         this.userAge = userAge;
     }
 
-    public Integer getUserMobileNum() {
+    public String getUserMobileNum() {
         return userMobileNum;
     }
 
-    public void setUserMobileNum(Integer userMobileNum) {
+    public void setUserMobileNum(String userMobileNum) {
         this.userMobileNum = userMobileNum;
     }
 
@@ -119,7 +102,7 @@ public class User {
     }
 
     public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
+        this.userNickname = userNickname == null ? null : userNickname.trim();
     }
 
     public String getUserDesc() {
@@ -127,23 +110,6 @@ public class User {
     }
 
     public void setUserDesc(String userDesc) {
-        this.userDesc = userDesc;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userRegistrationTime=" + userRegistrationTime +
-                ", userBirthday=" + userBirthday +
-                ", userAge=" + userAge +
-                ", userMobileNum=" + userMobileNum +
-                ", userNickname='" + userNickname + '\'' +
-                ", userDesc='" + userDesc + '\'' +
-                '}';
+        this.userDesc = userDesc == null ? null : userDesc.trim();
     }
 }

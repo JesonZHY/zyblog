@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function upload() {
+            alert("aaaa")
+            var userPhoto = new FormData();
+            userPhoto.append("userPhoto", $("#userPhoto")[0].files[0]);
+            $.ajax({
+                type: "post",
+                processData: false,
+                contentType: false,
+                url: "/admin/login/upload.do",
+                data: userPhoto,
+                success: function (result) {
+                    alert("aaaa");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form enctype="multipart/form-data">
+        文件：<input type="file" id="userPhoto" name="userPhoto">
+        上传：<input type="submit" onclick="upload()"></input>
+    </form>
+</body>
+</html>
