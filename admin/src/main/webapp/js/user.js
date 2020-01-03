@@ -38,6 +38,16 @@ function operation(userId) {
 }
 
 function deleteUser(userId) {
-    alert(userId);
+    if (confirm("确定要永久删除这个用户么？")) {
+        $.ajax({
+            type: "post",
+            url: "/login/delete.do",
+            data: {"userId": userId},
+            success: function(result) {
+                alert(result.message);
+                window.location.reload();
+            }
+        })
+    }
 }
 

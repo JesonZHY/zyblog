@@ -9,6 +9,8 @@ import com.wxnutrition.admin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoginServiceImpl implements LoginService {
 
@@ -41,5 +43,25 @@ public class LoginServiceImpl implements LoginService {
     public int save(User user) {
         int saveResult = userMapper.updateByPrimaryKey(user);
         return saveResult;
+    }
+
+    @Override
+    public int insert(User user) {
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public List<User> findByName(String userName) {
+        return userMapper.findByName(userName);
+    }
+
+    @Override
+    public List<User> findByNickName(String userNickName) {
+        return userMapper.findByNickName(userNickName);
+    }
+
+    @Override
+    public int delete(String userId) {
+        return userMapper.deleteByPrimaryKey(userId);
     }
 }

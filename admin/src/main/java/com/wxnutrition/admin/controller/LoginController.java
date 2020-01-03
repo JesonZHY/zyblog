@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -54,6 +55,10 @@ public class LoginController {
     @RequestMapping("/save")
     @ResponseBody
     public Result save(String userName, String userNickname, String userBirthday, String userMobileNum, String userEmail, String userDesc, String userPhoto) throws ParseException {
+        List<User> userList = loginService.findByNickName(userNickname);
+        if (userList.size() != 0) {
+            return new Result(false, "昵称重复！");
+        }
         User user = loginService.findByUsername(userName);
         user.setUserNickname(userNickname);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,6 +75,40 @@ public class LoginController {
             return new Result(true, "保存成功！");
         } else {
             return new Result(false, "保存失败！");
+        }
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Result insert(String userName, String userNickname, String userBirthday, String userMobileNum, String userEmail, String userDesc, String userPhoto) throws ParseException {
+        List<User> userList = loginService.findByName(userName);
+        if (userList.size() != 0) {
+            return new Result(false, "账号重复！");
+        }
+        List<User> userNickList = loginService.findByNickName(userNickname);
+        if (userNickList.size() != 0) {
+            return new Result(false, "昵称重复！");
+        }
+        User user = new User();
+        user.setUserId(UUID.randomUUID().toString().replaceAll("-", ""));
+        user.setUserName(userName);
+        user.setUserNickname(userNickname);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthday = simpleDateFormat.parse(userBirthday);
+        user.setUserBirthday(birthday);
+        user.setUserMobileNum(userMobileNum);
+        user.setUserEmail(userEmail);
+        if (!userPhoto.equals("not change pic.")) {
+            user.setUserPhoto(userPhoto);
+        }
+        user.setUserDesc(userDesc);
+        Date today = new Date();
+        user.setUserRetistrationTime(today);
+        int save = loginService.insert(user);
+        if (save != 0) {
+            return new Result(true, "注册成功！");
+        } else {
+            return new Result(false, "注册失败！");
         }
     }
 
@@ -102,6 +141,39 @@ public class LoginController {
             return new Result(true, "user is login.");
         } else {
             return new Result(false, "user is logout.");
+        }
+    }
+
+    @RequestMapping("/findByName")
+    @ResponseBody
+    public Result findByName(String userName) {
+        List<User> userList = loginService.findByName(userName);
+        if (userList.size() != 0) {
+            return new Result(false, "账号重复！");
+        } else {
+            return new Result(true, "账号可用！");
+        }
+    }
+
+    @RequestMapping("/findByNickName")
+    @ResponseBody
+    public Result findByNickName(String userNickName) {
+        List<User> userList = loginService.findByNickName(userNickName);
+        if (userList.size() != 0) {
+            return new Result(false, "昵称重复！");
+        } else {
+            return new Result(true, "昵称可用！");
+        }
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(String userId) {
+        int delete = loginService.delete(userId);
+        if (delete != 0) {
+            return new Result(true, "删除成功！");
+        } else {
+            return new Result(false, "删除失败！");
         }
     }
 }

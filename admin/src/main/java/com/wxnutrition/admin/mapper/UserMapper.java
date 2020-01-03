@@ -31,4 +31,8 @@ public interface UserMapper {
     User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     User findbyUsername(@Param("username") String userName);
+
+    List<User> findByName(@Param("username") String userName);
+
+    List<User> findByNickName(@Param("userNickName") String userNickName);
 }

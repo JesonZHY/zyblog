@@ -1,32 +1,33 @@
 $(function () {
-    var userId = GetRequest();
-
-    $.ajax({
-        type: "post",
-        url: "/login/findOne.do",
-        data: {"userId" : userId},
-        success: function (result) {
-            console.log(result);
-            $("#userName").val(result.userName);
-            $("#userNickname").val(result.userNickname);
-            var ub = (result.userBirthday).toString();
-            var year = ub.substring(0,10);
-            $("#userBirthday").val(year);
-            $("#userMobileNum").val(result.userMobileNum);
-            $("#userEmail").val(result.userEmail);
-            $("#userDesc").val(result.userDesc);
-        }
+    $("#userName").blur(function () {
+        var username = $("#userName").val();
+        $.ajax({
+            type: "post",
+            url: "/login/findByName.do",
+            data: {"userName": username},
+            success: function(result) {
+                if (!result.success) {
+                    alert(result.message);
+                }
+            }
+        })
     })
-});
+    $("#userNickname").blur(function () {
+        var userNickname = $("#userNickname").val();
+        $.ajax({
+            type: "post",
+            url: "/login/findByNickName.do",
+            data: {"userNickName": userNickname},
+            success: function(result) {
+                if (!result.success) {
+                    alert(result.message);
+                }
+            }
+        })
+    })
+})
 
-function GetRequest() {
-    var url = location.search; //获取url中"?"符后的字串
-    var str = url.substr(1);
-    var userID = str.substring(6);
-    return userID;
-}
-
-function save(){
+function insert(){
     var userName = $("#userName").val();
     var userNickname = $("#userNickname").val();
     var userBirthday = $("#userBirthday").val() == "" ? "1999-01-01" : $("#userBirthday").val();
@@ -46,7 +47,7 @@ function save(){
             uploadResult = result.message;
             $.ajax({
                 type: "post",
-                url: "/login/save.do",
+                url: "/login/insert.do",
                 data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
                 success: function (result) {
                     if (result.success) {
