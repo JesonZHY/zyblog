@@ -6,7 +6,6 @@ $(function () {
         url: "/login/findOne.do",
         data: {"userId" : userId},
         success: function (result) {
-            console.log(result);
             $("#userName").val(result.userName);
             $("#userNickname").val(result.userNickname);
             var ub = (result.userBirthday).toString();

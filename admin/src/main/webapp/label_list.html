@@ -78,7 +78,46 @@
     </ul>
 </aside>
 <main class="app-content">
-    标签列表
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i>标签列表</h1>
+            <p>Table to display label list</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">标签管理</li>
+            <li class="breadcrumb-item active"><a href="./label_list.html">标签列表</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                            <tr>
+                                <th>标签ID</th>
+                                <th>标签名称</th>
+                                <th>标签描述</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="labelDate">
+                            <tr style="display: none">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -89,5 +128,6 @@
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="js/userLoginDetection.js"></script>
+<script src="js/label.js"></script>
 </body>
 </html>
