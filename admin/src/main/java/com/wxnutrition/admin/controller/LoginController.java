@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,8 +28,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(String username, String password){
-        System.out.println(username + "....." + password);
+    public Result login(String username, String password, HttpServletRequest request){
         User user = loginService.login(username, password);
         if (user != null) {
             if (!user.getUserPassword().equals(password)) {
@@ -37,6 +37,7 @@ public class LoginController {
         } else {
             return new Result(false, "用户名不存在！");
         }
+        request.getSession().setAttribute("userLogin", username);
         return new Result(true, "登录成功！");
     }
 
@@ -72,7 +73,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("upload")
+    @RequestMapping("/upload")
     @ResponseBody
     public Result upload(@RequestParam(value = "userPhoto", required = false) MultipartFile uploadFile) throws IOException {
         if (uploadFile != null) {
@@ -84,6 +85,23 @@ public class LoginController {
             return new Result(true, "D:\\\\" + originalFN);
         } else {
             return new Result(true, "not change pic.");
+        }
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Result logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("userLogin");
+        return new Result(true, "user is logout.");
+    }
+    @RequestMapping("/isUserLogin")
+    @ResponseBody
+    public Result isUserLogin(HttpServletRequest request) {
+        String userLogin = (String) request.getSession().getAttribute("userLogin");
+        if (userLogin != null && !userLogin.equals("")) {
+            return new Result(true, "user is login.");
+        } else {
+            return new Result(false, "user is logout.");
         }
     }
 }

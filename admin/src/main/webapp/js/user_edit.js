@@ -3,7 +3,7 @@ $(function () {
 
     $.ajax({
         type: "post",
-        url: "/admin/login/findOne.do",
+        url: "/login/findOne.do",
         data: {"userId" : userId},
         success: function (result) {
             console.log(result);
@@ -40,13 +40,13 @@ function save(){
         type: "post",
         processData: false,
         contentType: false,
-        url: "/admin/login/upload.do",
+        url: "/login/upload.do",
         data: userPhoto,
         success: function (result) {
             uploadResult = result.message;
             $.ajax({
                 type: "post",
-                url: "/admin/login/save.do",
+                url: "/login/save.do",
                 data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
                 success: function (result) {
                     // alert(result);

@@ -3,7 +3,7 @@ $(function () {
     var rows = 10;
     $.ajax({
         type: "get",
-        url: "/admin/login/findAll.do?page="+page+"&rows="+rows ,
+        url: "/login/findAll.do?page="+page+"&rows="+rows ,
         success: function (result) {
             var userList = result.rows;
             // alert(userList.length);
@@ -34,7 +34,7 @@ $(function () {
 });
 
 function operation(userId) {
-    window.location.href ="/admin/user_edit.html?value=" + userId;
+    window.location.href ="/user_edit.html?value=" + userId;
 }
 
 function deleteUser(userId) {

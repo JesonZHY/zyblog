@@ -36,7 +36,7 @@ $(function () {
 		}
 		$.ajax({
 			type: "post",
-			url: "/admin/login/login.do",
+			url: "/login/login.do",
 			data: {"username":username, "password":password},
 			success: function (result) {
 				if (result.success == false) {
@@ -44,7 +44,7 @@ $(function () {
 					return;
 				}
 				if (result.success == true) {
-                    window.location.href ="/admin/dashboard.html";
+                    window.location.href ="/index.html";
                 }
             }
 		})
