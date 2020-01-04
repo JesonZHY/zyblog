@@ -49,4 +49,11 @@ public class LabelServiceImpl implements LabelService {
         return labelMapper.selectByPrimaryKey(labelId);
     }
 
+    @Override
+    public int updatelabelStatus(String labelId, String labelStatus) {
+        Label label = labelMapper.selectByPrimaryKey(labelId);
+        label.setLabelStatus(Integer.parseInt(labelStatus));
+        return labelMapper.updateByPrimaryKey(label);
+    }
+
 }

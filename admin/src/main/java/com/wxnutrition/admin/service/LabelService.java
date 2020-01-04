@@ -18,4 +18,6 @@ public interface LabelService {
     int save(Label label);
 
     Label findOne(String labelId);
+
+    int updatelabelStatus(String labelId, String labelStatus);
 }

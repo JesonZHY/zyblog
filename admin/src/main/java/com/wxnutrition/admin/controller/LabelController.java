@@ -82,4 +82,15 @@ public class LabelController {
             return new Result(false, "修改标签失败！");
         }
     }
+
+    @RequestMapping("/cahgneUserStatus")
+    @ResponseBody
+    public Result cahgneLabelStatus(String labelId, String labelStatus) {
+        int update = labelService.updatelabelStatus(labelId, labelStatus);
+        if (update != 0) {
+            return new Result(true, "变更标签状态成功！");
+        } else {
+            return new Result(false, "变更标签状态失败！");
+        }
+    }
 }
