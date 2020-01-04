@@ -38,7 +38,7 @@ function labelStatusOperation(labelId, labelStatus) {
     } else {
         labelStatusName = "禁用";
     }
-    if (confirm("确定要" + labelStatusName +"这个用户么？")) {
+    if (confirm("确定要" + labelStatusName +"这个标签么？")) {
         $.ajax({
             type: "post",
             url: "/label/changeLabelStatus.do",
@@ -57,7 +57,7 @@ function operation(labelId) {
 }
 
 function deleteLabel(labelId) {
-    if (confirm("确定要永久删除这个用户么？")) {
+    if (confirm("确定要永久删除这个标签么？")) {
         $.ajax({
             type: "post",
             url: "/label/delete.do",
