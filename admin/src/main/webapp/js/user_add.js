@@ -25,10 +25,27 @@ $(function () {
             }
         })
     })
+
+    $("#userPassword2").blur(function () {
+        var userPassword1 = $("#userPassword1").val();
+        var userPassword2 = $("#userPassword2").val();
+        if (userPassword2 != userPassword1) {
+            alert("两次输入密码不一致！");
+        }
+    })
 })
 
 function insert(){
     var userName = $("#userName").val();
+    var userPassword1 = $("#userPassword1").val();
+
+    var userPassword2 = $("#userPassword2").val();
+    if (userPassword2 != userPassword1) {
+        alert("两次输入密码不一致！");
+        return;
+    }
+
+    var userPassword = $("#userPassword2").val();
     var userNickname = $("#userNickname").val();
     var userBirthday = $("#userBirthday").val() == "" ? "1999-01-01" : $("#userBirthday").val();
     var userMobileNum = $("#userMobileNum").val();
@@ -48,7 +65,7 @@ function insert(){
             $.ajax({
                 type: "post",
                 url: "/login/insert.do",
-                data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
+                data: {"userName": userName, "userNickname": userNickname, "userPassword": userPassword, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
                 success: function (result) {
                     if (result.success) {
                         alert(result.message);

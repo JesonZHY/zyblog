@@ -244,6 +244,66 @@ public class LabelExample {
             return (Criteria) this;
         }
 
+        public Criteria andLabelStatusIsNull() {
+            addCriterion("label_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusIsNotNull() {
+            addCriterion("label_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusEqualTo(Integer value) {
+            addCriterion("label_status =", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusNotEqualTo(Integer value) {
+            addCriterion("label_status <>", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusGreaterThan(Integer value) {
+            addCriterion("label_status >", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("label_status >=", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusLessThan(Integer value) {
+            addCriterion("label_status <", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("label_status <=", value, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusIn(List<Integer> values) {
+            addCriterion("label_status in", values, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusNotIn(List<Integer> values) {
+            addCriterion("label_status not in", values, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusBetween(Integer value1, Integer value2) {
+            addCriterion("label_status between", value1, value2, "labelStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("label_status not between", value1, value2, "labelStatus");
+            return (Criteria) this;
+        }
+
         public Criteria andLabelDescIsNull() {
             addCriterion("label_desc is null");
             return (Criteria) this;

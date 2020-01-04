@@ -23,6 +23,8 @@ public class User {
 
     private String userNickname;
 
+    private Integer userStatus;
+
     private String userDesc;
 
     public String getUserId() {
@@ -94,7 +96,7 @@ public class User {
     }
 
     public void setUserMobileNum(String userMobileNum) {
-        this.userMobileNum = userMobileNum;
+        this.userMobileNum = userMobileNum == null ? null : userMobileNum.trim();
     }
 
     public String getUserNickname() {
@@ -103,6 +105,14 @@ public class User {
 
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname == null ? null : userNickname.trim();
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 
     public String getUserDesc() {

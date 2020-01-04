@@ -13,6 +13,15 @@ $(function () {
                 var userBir = (userList[i].userBirthday).toString();
                 var year = userBir.substring(0,4);
                 var userage = nowDate.getFullYear() - year;
+                var userStatusName = "";
+                var userStatus = "";
+                if (userList[i].userStatus == 1) {
+                    userStatusName = "启用";
+                    userStatus = 0;
+                } else {
+                    userStatusName = "禁用";
+                    userStatus = 1;
+                }
                 $("#userDate").append(
                     "<tr>" +
                     "<td>" + userList[i].userId + "</td>" +
@@ -25,6 +34,7 @@ $(function () {
                     "<td>" + userList[i].userPhoto + "</td>" +
                     "<td>" + userList[i].userRetistrationTime + "</td>" +
                     "<td>" + userList[i].userDesc + "</td>" +
+                    "<td><a onclick='userStatusOperation(\"" + userId + "\", \"" + userStatus + "\")'>" + userStatusName + "</td>" +
                     "<td><a onclick='operation(\"" + userId + "\")'>编辑&nbsp;&nbsp; </a><a onclick='deleteUser(\"" + userId +"\")'><i> &nbsp;&nbsp;删除</i></a></td>" +
                     "</tr>"
                 );
@@ -32,6 +42,26 @@ $(function () {
         }
     });
 });
+
+function userStatusOperation(userId, userStatus) {
+    var userStatusName = "";
+    if (userStatus == 1) {
+        userStatusName = "启用";
+    } else {
+        userStatusName = "禁用";
+    }
+    if (confirm("确定要" + userStatusName +"这个用户么？")) {
+        $.ajax({
+            type: "post",
+            url: "/login/cahgneUserStatus.do",
+            data: {"userId": userId, "userStatus": userStatus},
+            success: function(result) {
+                alert(result.message);
+                window.location.reload();
+            }
+        })
+    }
+}
 
 function operation(userId) {
     window.location.href ="/user_edit.html?value=" + userId;

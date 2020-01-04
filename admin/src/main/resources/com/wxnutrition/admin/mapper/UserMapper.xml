@@ -12,6 +12,7 @@
     <result column="user_age" property="userAge" jdbcType="INTEGER" />
     <result column="user_mobile_num" property="userMobileNum" jdbcType="VARCHAR" />
     <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
     <result column="user_desc" property="userDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     user_id, user_name, user_password, user_photo, user_email, user_retistration_time, 
-    user_birthday, user_age, user_mobile_num, user_nickname, user_desc
+    user_birthday, user_age, user_mobile_num, user_nickname, user_status, user_desc
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wxnutrition.admin.pojo.UserExample" >
     select
@@ -110,11 +111,13 @@
     insert into user (user_id, user_name, user_password, 
       user_photo, user_email, user_retistration_time, 
       user_birthday, user_age, user_mobile_num, 
-      user_nickname, user_desc)
+      user_nickname, user_status, user_desc
+      )
     values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userPhoto,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userRetistrationTime,jdbcType=TIMESTAMP}, 
-      #{userBirthday,jdbcType=DATE}, #{userAge,jdbcType=INTEGER}, #{userMobileNum,jdbcType=VARCHAR},
-      #{userNickname,jdbcType=VARCHAR}, #{userDesc,jdbcType=VARCHAR})
+      #{userBirthday,jdbcType=DATE}, #{userAge,jdbcType=INTEGER}, #{userMobileNum,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, #{userDesc,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.wxnutrition.admin.pojo.User" >
     insert into user
@@ -148,6 +151,9 @@
       </if>
       <if test="userNickname != null" >
         user_nickname,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
       </if>
       <if test="userDesc != null" >
         user_desc,
@@ -183,6 +189,9 @@
       </if>
       <if test="userNickname != null" >
         #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
       </if>
       <if test="userDesc != null" >
         #{userDesc,jdbcType=VARCHAR},
@@ -228,6 +237,9 @@
       <if test="record.userNickname != null" >
         user_nickname = #{record.userNickname,jdbcType=VARCHAR},
       </if>
+      <if test="record.userStatus != null" >
+        user_status = #{record.userStatus,jdbcType=INTEGER},
+      </if>
       <if test="record.userDesc != null" >
         user_desc = #{record.userDesc,jdbcType=VARCHAR},
       </if>
@@ -248,6 +260,7 @@
       user_age = #{record.userAge,jdbcType=INTEGER},
       user_mobile_num = #{record.userMobileNum,jdbcType=VARCHAR},
       user_nickname = #{record.userNickname,jdbcType=VARCHAR},
+      user_status = #{record.userStatus,jdbcType=INTEGER},
       user_desc = #{record.userDesc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,6 +296,9 @@
       <if test="userNickname != null" >
         user_nickname = #{userNickname,jdbcType=VARCHAR},
       </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
       <if test="userDesc != null" >
         user_desc = #{userDesc,jdbcType=VARCHAR},
       </if>
@@ -300,9 +316,11 @@
       user_age = #{userAge,jdbcType=INTEGER},
       user_mobile_num = #{userMobileNum,jdbcType=VARCHAR},
       user_nickname = #{userNickname,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER},
       user_desc = #{userDesc,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
   <select id="findByUsernameAndPassword" resultMap="BaseResultMap" parameterType="java.lang.String">
     select * from user where user_name = #{username} and user_password = #{password}
   </select>

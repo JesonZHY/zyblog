@@ -8,10 +8,12 @@ import com.wxnutrition.admin.pojo.User;
 import com.wxnutrition.admin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class LoginServiceImpl implements LoginService {
 
     @Autowired
@@ -63,5 +65,12 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public int delete(String userId) {
         return userMapper.deleteByPrimaryKey(userId);
+    }
+
+    @Override
+    public int updateUserStatus(String userId, String userStatus) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        user.setUserStatus(Integer.parseInt(userStatus));
+        return userMapper.updateByPrimaryKey(user);
     }
 }

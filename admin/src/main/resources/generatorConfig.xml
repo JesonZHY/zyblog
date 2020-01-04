@@ -48,6 +48,7 @@
         </javaClientGenerator>
         <!-- 指定数据库表 -->
         <table tableName="label" schema=""></table>
+        <table tableName="user" schema=""></table>
 
     </context>
 </generatorConfiguration>

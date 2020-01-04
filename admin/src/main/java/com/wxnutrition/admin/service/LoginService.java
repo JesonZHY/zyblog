@@ -24,4 +24,6 @@ public interface LoginService {
     List<User> findByNickName(String userNickName);
 
     int delete(String userId);
+
+    int updateUserStatus(String userId, String userStatus);
 }

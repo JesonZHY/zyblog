@@ -35,6 +35,9 @@ public class LoginController {
             if (!user.getUserPassword().equals(password)) {
                 return new Result(false, "密码错误！");
             }
+            if (user.getUserStatus() == 0) {
+                return new Result(false, "当前用户已被停用！");
+            }
         } else {
             return new Result(false, "用户名不存在！");
         }
@@ -57,7 +60,12 @@ public class LoginController {
     public Result save(String userName, String userNickname, String userBirthday, String userMobileNum, String userEmail, String userDesc, String userPhoto) throws ParseException {
         List<User> userList = loginService.findByNickName(userNickname);
         if (userList.size() != 0) {
-            return new Result(false, "昵称重复！");
+            for (int i = 0; i < userList.size(); i++) {
+                User user = userList.get(i);
+                if (!user.getUserName().equals(userName)) {
+                    return new Result(false, "昵称重复！");
+                }
+            }
         }
         User user = loginService.findByUsername(userName);
         user.setUserNickname(userNickname);
@@ -80,7 +88,7 @@ public class LoginController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public Result insert(String userName, String userNickname, String userBirthday, String userMobileNum, String userEmail, String userDesc, String userPhoto) throws ParseException {
+    public Result insert(String userName, String userNickname, String userPassword, String userBirthday, String userMobileNum, String userEmail, String userDesc, String userPhoto) throws ParseException {
         List<User> userList = loginService.findByName(userName);
         if (userList.size() != 0) {
             return new Result(false, "账号重复！");
@@ -92,6 +100,7 @@ public class LoginController {
         User user = new User();
         user.setUserId(UUID.randomUUID().toString().replaceAll("-", ""));
         user.setUserName(userName);
+        user.setUserPassword(userPassword);
         user.setUserNickname(userNickname);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date birthday = simpleDateFormat.parse(userBirthday);
@@ -102,6 +111,7 @@ public class LoginController {
             user.setUserPhoto(userPhoto);
         }
         user.setUserDesc(userDesc);
+        user.setUserStatus(1);
         Date today = new Date();
         user.setUserRetistrationTime(today);
         int save = loginService.insert(user);
@@ -114,14 +124,15 @@ public class LoginController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public Result upload(@RequestParam(value = "userPhoto", required = false) MultipartFile uploadFile) throws IOException {
+    public Result upload(@RequestParam(value = "userPhoto", required = false) MultipartFile uploadFile, HttpServletRequest request) throws IOException {
         if (uploadFile != null) {
-            String newFileName = UUID.randomUUID().toString();
             String originalFN = uploadFile.getOriginalFilename();//原文件名
-            String suffixName = originalFN.substring(originalFN.lastIndexOf("."));//后缀
-            String finalName =  newFileName + suffixName;
-            uploadFile.transferTo(new File("D:\\\\" + originalFN));
-            return new Result(true, "D:\\\\" + originalFN);
+            String requestURL = request.getRequestURL().toString();
+            String requestURI = request.getRequestURI();
+            String substring = requestURL.substring(0, requestURL.indexOf(requestURI));
+            String imagesPath = request.getSession().getServletContext().getRealPath("images");
+            uploadFile.transferTo(new File( imagesPath + "/" + originalFN));
+            return new Result(true, substring + "/images/" + originalFN);
         } else {
             return new Result(true, "not change pic.");
         }
@@ -175,5 +186,23 @@ public class LoginController {
         } else {
             return new Result(false, "删除失败！");
         }
+    }
+
+    @RequestMapping("/cahgneUserStatus")
+    @ResponseBody
+    public Result cahgneUserStatus(String userId, String userStatus) {
+        int update = loginService.updateUserStatus(userId, userStatus);
+        if (update != 0) {
+            return new Result(true, "变更用户状态成功！");
+        } else {
+            return new Result(false, "变更用户状态失败！");
+        }
+    }
+
+    @RequestMapping("/getUserInfo")
+    public User getUserInfo(HttpServletRequest request) {
+        String currentUserName = (String) request.getSession().getAttribute("userLogin");
+        User currentUser = loginService.findByUsername(currentUserName);
+        return currentUser;
     }
 }

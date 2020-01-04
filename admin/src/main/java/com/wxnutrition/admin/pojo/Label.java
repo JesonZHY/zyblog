@@ -5,6 +5,8 @@ public class Label {
 
     private String labelName;
 
+    private Integer labelStatus;
+
     private String labelDesc;
 
     public String getLabelId() {
@@ -21,6 +23,14 @@ public class Label {
 
     public void setLabelName(String labelName) {
         this.labelName = labelName == null ? null : labelName.trim();
+    }
+
+    public Integer getLabelStatus() {
+        return labelStatus;
+    }
+
+    public void setLabelStatus(Integer labelStatus) {
+        this.labelStatus = labelStatus;
     }
 
     public String getLabelDesc() {

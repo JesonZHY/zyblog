@@ -43,10 +43,10 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/favicon.png" alt="User Image">
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" id="currentUserPhoto" alt="User Image">
         <div>
-            <p class="app-sidebar__user-name">John Doe</p>
-            <p class="app-sidebar__user-designation">Frontend Developer</p>
+            <p class="app-sidebar__user-name" id="currentUserName"></p>
+            <p class="app-sidebar__user-designation" id="currentUserDesc"></p>
         </div>
     </div>
     <ul class="app-menu">
@@ -98,6 +98,18 @@
                         <label class="control-label col-md-1">账号</label>
                         <div class="col-md-9">
                             <input class="form-control" id="userName" name="userName" type="text" placeholder="Enter your name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-1">密码</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="userPaaaword1" type="password" placeholder="Enter your password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-1">再次输入密码</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="userPaaaword2" name="userPaaaword" type="password" placeholder="Enter your password again">
                         </div>
                     </div>
                     <div class="form-group row">

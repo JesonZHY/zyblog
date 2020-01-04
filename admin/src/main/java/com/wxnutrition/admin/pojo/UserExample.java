@@ -672,52 +672,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumEqualTo(Integer value) {
+        public Criteria andUserMobileNumEqualTo(String value) {
             addCriterion("user_mobile_num =", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumNotEqualTo(Integer value) {
+        public Criteria andUserMobileNumNotEqualTo(String value) {
             addCriterion("user_mobile_num <>", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumGreaterThan(Integer value) {
+        public Criteria andUserMobileNumGreaterThan(String value) {
             addCriterion("user_mobile_num >", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUserMobileNumGreaterThanOrEqualTo(String value) {
             addCriterion("user_mobile_num >=", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumLessThan(Integer value) {
+        public Criteria andUserMobileNumLessThan(String value) {
             addCriterion("user_mobile_num <", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumLessThanOrEqualTo(Integer value) {
+        public Criteria andUserMobileNumLessThanOrEqualTo(String value) {
             addCriterion("user_mobile_num <=", value, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumIn(List<Integer> values) {
+        public Criteria andUserMobileNumLike(String value) {
+            addCriterion("user_mobile_num like", value, "userMobileNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserMobileNumNotLike(String value) {
+            addCriterion("user_mobile_num not like", value, "userMobileNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserMobileNumIn(List<String> values) {
             addCriterion("user_mobile_num in", values, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumNotIn(List<Integer> values) {
+        public Criteria andUserMobileNumNotIn(List<String> values) {
             addCriterion("user_mobile_num not in", values, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumBetween(Integer value1, Integer value2) {
+        public Criteria andUserMobileNumBetween(String value1, String value2) {
             addCriterion("user_mobile_num between", value1, value2, "userMobileNum");
             return (Criteria) this;
         }
 
-        public Criteria andUserMobileNumNotBetween(Integer value1, Integer value2) {
+        public Criteria andUserMobileNumNotBetween(String value1, String value2) {
             addCriterion("user_mobile_num not between", value1, value2, "userMobileNum");
             return (Criteria) this;
         }
@@ -789,6 +799,66 @@ public class UserExample {
 
         public Criteria andUserNicknameNotBetween(String value1, String value2) {
             addCriterion("user_nickname not between", value1, value2, "userNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusIsNull() {
+            addCriterion("user_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusIsNotNull() {
+            addCriterion("user_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusEqualTo(Integer value) {
+            addCriterion("user_status =", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusNotEqualTo(Integer value) {
+            addCriterion("user_status <>", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusGreaterThan(Integer value) {
+            addCriterion("user_status >", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_status >=", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusLessThan(Integer value) {
+            addCriterion("user_status <", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("user_status <=", value, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusIn(List<Integer> values) {
+            addCriterion("user_status in", values, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusNotIn(List<Integer> values) {
+            addCriterion("user_status not in", values, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusBetween(Integer value1, Integer value2) {
+            addCriterion("user_status between", value1, value2, "userStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_status not between", value1, value2, "userStatus");
             return (Criteria) this;
         }
 
