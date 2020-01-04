@@ -41,7 +41,7 @@ function labelStatusOperation(labelId, labelStatus) {
     if (confirm("确定要" + labelStatusName +"这个用户么？")) {
         $.ajax({
             type: "post",
-            url: "/label/cahgneLabelStatus.do",
+            url: "/label/changeLabelStatus.do",
             data: {"labelId": labelId, "labelStatus": labelStatus},
             success: function(result) {
                 alert(result.message);

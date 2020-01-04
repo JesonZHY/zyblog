@@ -83,9 +83,9 @@ public class LabelController {
         }
     }
 
-    @RequestMapping("/cahgneUserStatus")
+    @RequestMapping("/changeLabelStatus")
     @ResponseBody
-    public Result cahgneLabelStatus(String labelId, String labelStatus) {
+    public Result changeLabelStatus(String labelId, String labelStatus) {
         int update = labelService.updatelabelStatus(labelId, labelStatus);
         if (update != 0) {
             return new Result(true, "变更标签状态成功！");

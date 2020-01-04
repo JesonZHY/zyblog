@@ -188,9 +188,9 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/cahgneUserStatus")
+    @RequestMapping("/changeUserStatus")
     @ResponseBody
-    public Result cahgneUserStatus(String userId, String userStatus) {
+    public Result changeUserStatus(String userId, String userStatus) {
         int update = loginService.updateUserStatus(userId, userStatus);
         if (update != 0) {
             return new Result(true, "变更用户状态成功！");

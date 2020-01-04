@@ -53,7 +53,7 @@ function userStatusOperation(userId, userStatus) {
     if (confirm("确定要" + userStatusName +"这个用户么？")) {
         $.ajax({
             type: "post",
-            url: "/login/cahgneUserStatus.do",
+            url: "/login/changeUserStatus.do",
             data: {"userId": userId, "userStatus": userStatus},
             success: function(result) {
                 alert(result.message);
