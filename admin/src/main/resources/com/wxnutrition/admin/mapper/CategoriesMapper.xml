@@ -4,10 +4,9 @@
   <resultMap id="BaseResultMap" type="com.wxnutrition.admin.pojo.Categories" >
     <id column="categories_id" property="categoriesId" jdbcType="VARCHAR" />
     <result column="categories_name" property="categoriesName" jdbcType="VARCHAR" />
+    <result column="categories_desc" property="categoriesDesc" jdbcType="VARCHAR" />
+    <result column="categories_status" property="categoriesStatus" jdbcType="INTEGER" />
     <result column="parent_categories_id" property="parentCategoriesId" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.wxnutrition.admin.pojo.Categories" extends="BaseResultMap" >
-    <result column="categories_desc" property="categoriesDesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,27 +67,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    categories_id, categories_name, parent_categories_id
+    categories_id, categories_name, categories_desc, categories_status, parent_categories_id
   </sql>
-  <sql id="Blob_Column_List" >
-    categories_desc
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wxnutrition.admin.pojo.CategoriesExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from categories
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wxnutrition.admin.pojo.CategoriesExample" >
     select
     <if test="distinct" >
@@ -103,11 +83,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from categories
     where categories_id = #{categoriesId,jdbcType=VARCHAR}
   </select>
@@ -122,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wxnutrition.admin.pojo.Categories" >
-    insert into categories (categories_id, categories_name, parent_categories_id, 
-      categories_desc)
-    values (#{categoriesId,jdbcType=VARCHAR}, #{categoriesName,jdbcType=VARCHAR}, #{parentCategoriesId,jdbcType=VARCHAR}, 
-      #{categoriesDesc,jdbcType=LONGVARCHAR})
+    insert into categories (categories_id, categories_name, categories_desc, 
+      categories_status, parent_categories_id)
+    values (#{categoriesId,jdbcType=VARCHAR}, #{categoriesName,jdbcType=VARCHAR}, #{categoriesDesc,jdbcType=VARCHAR}, 
+      #{categoriesStatus,jdbcType=INTEGER}, #{parentCategoriesId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wxnutrition.admin.pojo.Categories" >
     insert into categories
@@ -136,11 +114,14 @@
       <if test="categoriesName != null" >
         categories_name,
       </if>
-      <if test="parentCategoriesId != null" >
-        parent_categories_id,
-      </if>
       <if test="categoriesDesc != null" >
         categories_desc,
+      </if>
+      <if test="categoriesStatus != null" >
+        categories_status,
+      </if>
+      <if test="parentCategoriesId != null" >
+        parent_categories_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -150,11 +131,14 @@
       <if test="categoriesName != null" >
         #{categoriesName,jdbcType=VARCHAR},
       </if>
+      <if test="categoriesDesc != null" >
+        #{categoriesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoriesStatus != null" >
+        #{categoriesStatus,jdbcType=INTEGER},
+      </if>
       <if test="parentCategoriesId != null" >
         #{parentCategoriesId,jdbcType=VARCHAR},
-      </if>
-      <if test="categoriesDesc != null" >
-        #{categoriesDesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -173,23 +157,16 @@
       <if test="record.categoriesName != null" >
         categories_name = #{record.categoriesName,jdbcType=VARCHAR},
       </if>
+      <if test="record.categoriesDesc != null" >
+        categories_desc = #{record.categoriesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoriesStatus != null" >
+        categories_status = #{record.categoriesStatus,jdbcType=INTEGER},
+      </if>
       <if test="record.parentCategoriesId != null" >
         parent_categories_id = #{record.parentCategoriesId,jdbcType=VARCHAR},
       </if>
-      <if test="record.categoriesDesc != null" >
-        categories_desc = #{record.categoriesDesc,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update categories
-    set categories_id = #{record.categoriesId,jdbcType=VARCHAR},
-      categories_name = #{record.categoriesName,jdbcType=VARCHAR},
-      parent_categories_id = #{record.parentCategoriesId,jdbcType=VARCHAR},
-      categories_desc = #{record.categoriesDesc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,6 +175,8 @@
     update categories
     set categories_id = #{record.categoriesId,jdbcType=VARCHAR},
       categories_name = #{record.categoriesName,jdbcType=VARCHAR},
+      categories_desc = #{record.categoriesDesc,jdbcType=VARCHAR},
+      categories_status = #{record.categoriesStatus,jdbcType=INTEGER},
       parent_categories_id = #{record.parentCategoriesId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -209,26 +188,28 @@
       <if test="categoriesName != null" >
         categories_name = #{categoriesName,jdbcType=VARCHAR},
       </if>
+      <if test="categoriesDesc != null" >
+        categories_desc = #{categoriesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoriesStatus != null" >
+        categories_status = #{categoriesStatus,jdbcType=INTEGER},
+      </if>
       <if test="parentCategoriesId != null" >
         parent_categories_id = #{parentCategoriesId,jdbcType=VARCHAR},
       </if>
-      <if test="categoriesDesc != null" >
-        categories_desc = #{categoriesDesc,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where categories_id = #{categoriesId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wxnutrition.admin.pojo.Categories" >
-    update categories
-    set categories_name = #{categoriesName,jdbcType=VARCHAR},
-      parent_categories_id = #{parentCategoriesId,jdbcType=VARCHAR},
-      categories_desc = #{categoriesDesc,jdbcType=LONGVARCHAR}
     where categories_id = #{categoriesId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wxnutrition.admin.pojo.Categories" >
     update categories
     set categories_name = #{categoriesName,jdbcType=VARCHAR},
+      categories_desc = #{categoriesDesc,jdbcType=VARCHAR},
+      categories_status = #{categoriesStatus,jdbcType=INTEGER},
       parent_categories_id = #{parentCategoriesId,jdbcType=VARCHAR}
     where categories_id = #{categoriesId,jdbcType=VARCHAR}
   </update>
+
+  <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from categories where categories_name = #{categoriesName}
+  </select>
 </mapper>

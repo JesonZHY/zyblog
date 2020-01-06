@@ -69,6 +69,12 @@
                 <li><a class="treeview-item" href="label_add.html"><i class="icon fa fa-circle-o"></i>添加标签</a></li>
             </ul>
         </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">分类管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="categories_list.html"><i class="icon fa fa-circle-o"></i>分类列表</a></li>
+                <li><a class="treeview-item" href="categories_add.html"><i class="icon fa fa-circle-o"></i>添加分类</a></li>
+            </ul>
+        </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">用户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="user_list.html"><i class="icon fa fa-circle-o"></i>用户列表</a></li>
@@ -78,7 +84,21 @@
     </ul>
 </aside>
 <main class="app-content">
-    博文列表
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i>博文列表</h1>
+            <p>Table to display arcitle list</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">文章管理</li>
+            <li class="breadcrumb-item active"><a href="./categories_add.html">博文列表</a></li>
+        </ul>
+    </div>
+
+    <div id="articleDate">
+
+    </div>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -89,5 +109,6 @@
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="js/userLoginDetection.js"></script>
+<script src="js/article.js"></script>
 </body>
 </html>

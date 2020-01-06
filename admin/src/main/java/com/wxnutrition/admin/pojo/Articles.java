@@ -7,6 +7,10 @@ public class Articles {
 
     private String userId;
 
+    private String articleTitle;
+
+    private String articleContents;
+
     private Integer articleViews;
 
     private Integer articleCommentCount;
@@ -29,6 +33,22 @@ public class Articles {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getArticleTitle() {
+        return articleTitle;
+    }
+
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle == null ? null : articleTitle.trim();
+    }
+
+    public String getArticleContents() {
+        return articleContents;
+    }
+
+    public void setArticleContents(String articleContents) {
+        this.articleContents = articleContents == null ? null : articleContents.trim();
     }
 
     public Integer getArticleViews() {

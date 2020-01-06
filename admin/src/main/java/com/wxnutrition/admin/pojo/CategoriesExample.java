@@ -244,6 +244,136 @@ public class CategoriesExample {
             return (Criteria) this;
         }
 
+        public Criteria andCategoriesDescIsNull() {
+            addCriterion("categories_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescIsNotNull() {
+            addCriterion("categories_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescEqualTo(String value) {
+            addCriterion("categories_desc =", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescNotEqualTo(String value) {
+            addCriterion("categories_desc <>", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescGreaterThan(String value) {
+            addCriterion("categories_desc >", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescGreaterThanOrEqualTo(String value) {
+            addCriterion("categories_desc >=", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescLessThan(String value) {
+            addCriterion("categories_desc <", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescLessThanOrEqualTo(String value) {
+            addCriterion("categories_desc <=", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescLike(String value) {
+            addCriterion("categories_desc like", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescNotLike(String value) {
+            addCriterion("categories_desc not like", value, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescIn(List<String> values) {
+            addCriterion("categories_desc in", values, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescNotIn(List<String> values) {
+            addCriterion("categories_desc not in", values, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescBetween(String value1, String value2) {
+            addCriterion("categories_desc between", value1, value2, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesDescNotBetween(String value1, String value2) {
+            addCriterion("categories_desc not between", value1, value2, "categoriesDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusIsNull() {
+            addCriterion("categories_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusIsNotNull() {
+            addCriterion("categories_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusEqualTo(Integer value) {
+            addCriterion("categories_status =", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusNotEqualTo(Integer value) {
+            addCriterion("categories_status <>", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusGreaterThan(Integer value) {
+            addCriterion("categories_status >", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("categories_status >=", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusLessThan(Integer value) {
+            addCriterion("categories_status <", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("categories_status <=", value, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusIn(List<Integer> values) {
+            addCriterion("categories_status in", values, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusNotIn(List<Integer> values) {
+            addCriterion("categories_status not in", values, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusBetween(Integer value1, Integer value2) {
+            addCriterion("categories_status between", value1, value2, "categoriesStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoriesStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("categories_status not between", value1, value2, "categoriesStatus");
+            return (Criteria) this;
+        }
+
         public Criteria andParentCategoriesIdIsNull() {
             addCriterion("parent_categories_id is null");
             return (Criteria) this;
