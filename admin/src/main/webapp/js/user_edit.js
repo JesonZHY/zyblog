@@ -14,6 +14,7 @@ $(function () {
             $("#userMobileNum").val(result.userMobileNum);
             $("#userEmail").val(result.userEmail);
             $("#userDesc").val(result.userDesc);
+            $("#hiddenFile").val(result.userPhoto);
         }
     })
 });
@@ -32,32 +33,52 @@ function save(){
     var userMobileNum = $("#userMobileNum").val();
     var userEmail = $("#userEmail").val();
     var userDesc = $("#userDesc").val();
-    var userPhoto = new FormData();
-    userPhoto.append("userPhoto", $("#userPhoto")[0].files[0]);
-    var uploadResult = "";
-    $.ajax({
-        type: "post",
-        processData: false,
-        contentType: false,
-        url: "/login/upload.do",
-        data: userPhoto,
-        success: function (result) {
-            uploadResult = result.message;
-            $.ajax({
-                type: "post",
-                url: "/login/save.do",
-                data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
-                success: function (result) {
-                    if (result.success) {
-                        alert(result.message);
-                        window.location.href = "/user_list.html";
-                    } else {
-                        alert(result.message);
-                    }
+    var userPhoto =  $("#hiddenFile").val()
+    var file = $("#file").val()
+    if (file == "" || file == undefined || file == null) {
+        $.ajax({
+            type: "post",
+            url: "/login/save.do",
+            data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": userPhoto},
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    window.location.href = "/user_list.html";
+                } else {
+                    alert(result.message);
                 }
-            })
-        },
-        sync: false
-    })
+            }
+        })
+    } else {
+        var formData = new FormData($('form')[0]);
+        var uploadResult = "";
+        $.ajax({
+            type: "post",
+            processData: false,
+            contentType: false,
+            url: "http://up.imgapi.com/",
+            data: formData,
+            sync: false,
+            success: function (result) {
+                uploadResult = result.t_url;
+                $.ajax({
+                    type: "post",
+                    url: "/login/save.do",
+                    data: {"userName": userName, "userNickname": userNickname, "userBirthday": userBirthday, "userMobileNum": userMobileNum, "userEmail": userEmail, "userDesc": userDesc, "userPhoto": uploadResult},
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
+                            window.location.href = "/user_list.html";
+                        } else {
+                            alert(result.message);
+                        }
+                    }
+                })
+            },
+            error: function (result) {
+                console.log(result);
+            }
+        })
+    }
 
 }

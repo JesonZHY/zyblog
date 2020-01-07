@@ -100,6 +100,7 @@
             <h3 class="tile-title">用户编辑</h3>
             <div class="tile-body">
                 <form class="form-horizontal" enctype="multipart/form-data">
+                    <input name="Token" type="hidden" id="Token" value="a0af4aefc43c71e057a0498d991dbda87c06967d:RSwiRY6zAzbsupvsV4eskT17IqQ=:eyJkZWFkbGluZSI6MTU3ODM4NzIwMiwiYWN0aW9uIjoiZ2V0IiwidWlkIjoiNzA3NTA1IiwiYWlkIjoiMTY1ODYyNSIsImZyb20iOiJmaWxlIn0=" />
                     <div class="form-group row">
                         <label class="control-label col-md-1">账号</label>
                         <div class="col-md-9">
@@ -133,7 +134,8 @@
                     <div class="form-group row">
                         <label class="control-label col-md-1">头像照片</label>
                         <div class="col-md-9">
-                            <input class="form-control" id="userPhoto" name="userPhoto" type="file">
+                            <input id="hiddenFile" type="hidden">
+                            <input class="form-control" id="file" name="file" type="file">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -151,6 +153,8 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="js/jquery-3.3.1.min.js"></script>

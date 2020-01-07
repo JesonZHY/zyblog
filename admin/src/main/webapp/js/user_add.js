@@ -45,23 +45,29 @@ function insert(){
         return;
     }
 
+    var file = $("#file").val()
+    if (file == "" || file == undefined || file == null) {
+        alert("头像照片为空，请上传！");
+        return;
+    }
+
     var userPassword = $("#userPassword2").val();
     var userNickname = $("#userNickname").val();
     var userBirthday = $("#userBirthday").val() == "" ? "1999-01-01" : $("#userBirthday").val();
     var userMobileNum = $("#userMobileNum").val();
     var userEmail = $("#userEmail").val();
     var userDesc = $("#userDesc").val();
-    var userPhoto = new FormData();
-    userPhoto.append("userPhoto", $("#userPhoto")[0].files[0]);
+    var formData = new FormData($("form")[0]);
     var uploadResult = "";
     $.ajax({
         type: "post",
         processData: false,
         contentType: false,
-        url: "/login/upload.do",
-        data: userPhoto,
+        url: "http://up.imgapi.com/",
+        data: formData,
+        sync: false,
         success: function (result) {
-            uploadResult = result.message;
+            uploadResult = result.t_url;
             $.ajax({
                 type: "post",
                 url: "/login/insert.do",
@@ -76,7 +82,10 @@ function insert(){
                 }
             })
         },
-        sync: false
+        error: function (result) {
+            console.log(result);
+        }
+
     })
 
 }
