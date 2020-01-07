@@ -30,4 +30,5 @@ public interface ArticlesMapper {
     int updateByPrimaryKey(Articles record);
 
     List<Articles> findAll();
+
 }

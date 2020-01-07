@@ -99,6 +99,35 @@
     <div id="articleDate">
 
     </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="myModalLabel" class="modal-title">发布状态变更</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <input id="articleIdModal" hidden/>
+                    <div class="animated-radio-button">
+                        <label>
+                            <input type="radio" name="articleStatus" value="0"><span class="label-text">发布</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="articleStatus" value="1"><span class="label-text">保存</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="articleStatus" value="2"><span class="label-text">删除</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="saveStatus()" data-dismiss="modal" aria-hidden="true">保存</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="js/jquery-3.3.1.min.js"></script>

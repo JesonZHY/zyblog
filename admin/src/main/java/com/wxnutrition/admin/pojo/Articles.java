@@ -17,6 +17,8 @@ public class Articles {
 
     private Date articleDate;
 
+    private Integer articleStatus;
+
     private Integer articleLikeCount;
 
     public String getArticleId() {
@@ -73,6 +75,14 @@ public class Articles {
 
     public void setArticleDate(Date articleDate) {
         this.articleDate = articleDate;
+    }
+
+    public Integer getArticleStatus() {
+        return articleStatus;
+    }
+
+    public void setArticleStatus(Integer articleStatus) {
+        this.articleStatus = articleStatus;
     }
 
     public Integer getArticleLikeCount() {

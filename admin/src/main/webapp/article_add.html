@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="js/plugins/kindeditor/themes/default/default.css">
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->
@@ -84,7 +85,55 @@
     </ul>
 </aside>
 <main class="app-content">
-    发表博文
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i>发表文章</h1>
+            <p>Table to publish an arcitle</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">文章管理</li>
+            <li class="breadcrumb-item active"><a href="./categories_add.html">发表文章</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <div class="tile">
+            <h3 class="tile-title">发表文章</h3>
+            <div class="tile-body">
+                <form class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label class="control-label col-md-1">主题</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="articleTitle" name="articleTitle" type="text" placeholder="Enter your article title">
+                        </div>
+                    </div>
+                    <div class="form-group row animated-checkbox">
+                        <label class="control-label col-md-1">分类</label>
+                        <div class="col-md-9" id="articleCategories">
+
+                        </div>
+                    </div>
+                    <div class="form-group row animated-checkbox">
+                        <label class="control-label col-md-1">标签</label>
+                        <div class="col-md-9" id="articleLabels">
+
+                        </div>
+                    </div>
+                    <div class="form-group row" style="height: 1000px">
+                        <label class="control-label col-md-1">内容</label>
+                        <textarea class="col-md-9" name="content" id="articleContents">
+
+                        </textarea>
+                    </div>
+                    <div class="tile-footer">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-3">
+                                <button class="btn btn-primary" type="button" onclick="insert()"><i class="fa fa-fw fa-lg fa-check-circle"></i>保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -95,5 +144,8 @@
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="js/userLoginDetection.js"></script>
+<script src="js/plugins/kindeditor/kindeditor-min.js"></script>
+<script src="js/plugins/kindeditor/lang/zh_CN.js"></script>
+<script src="js/article_add.js"></script>
 </body>
 </html>

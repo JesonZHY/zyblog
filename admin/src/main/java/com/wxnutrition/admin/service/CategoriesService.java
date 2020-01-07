@@ -20,4 +20,6 @@ public interface CategoriesService {
     Categories findOne(String categoriesId);
 
     int updatecategoriesStatus(String categoriesId, String categoriesStatus);
+
+    List<Categories> findAllcategories();
 }

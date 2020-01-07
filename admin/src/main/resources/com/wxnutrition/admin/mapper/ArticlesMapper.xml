@@ -9,6 +9,7 @@
     <result column="article_views" property="articleViews" jdbcType="INTEGER" />
     <result column="article_comment_count" property="articleCommentCount" jdbcType="INTEGER" />
     <result column="article_date" property="articleDate" jdbcType="TIMESTAMP" />
+    <result column="article_status" property="articleStatus" jdbcType="INTEGER" />
     <result column="article_like_count" property="articleLikeCount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     article_id, user_id, article_title, article_contents, article_views, article_comment_count, 
-    article_date, article_like_count
+    article_date, article_status, article_like_count
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wxnutrition.admin.pojo.ArticlesExample" >
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="com.wxnutrition.admin.pojo.Articles" >
     insert into articles (article_id, user_id, article_title, 
       article_contents, article_views, article_comment_count, 
-      article_date, article_like_count)
+      article_date, article_status, article_like_count
+      )
     values (#{articleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{articleTitle,jdbcType=VARCHAR}, 
       #{articleContents,jdbcType=VARCHAR}, #{articleViews,jdbcType=INTEGER}, #{articleCommentCount,jdbcType=INTEGER}, 
-      #{articleDate,jdbcType=TIMESTAMP}, #{articleLikeCount,jdbcType=INTEGER})
+      #{articleDate,jdbcType=TIMESTAMP}, #{articleStatus,jdbcType=INTEGER}, #{articleLikeCount,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.wxnutrition.admin.pojo.Articles" >
     insert into articles
@@ -134,6 +137,9 @@
       </if>
       <if test="articleDate != null" >
         article_date,
+      </if>
+      <if test="articleStatus != null" >
+        article_status,
       </if>
       <if test="articleLikeCount != null" >
         article_like_count,
@@ -160,6 +166,9 @@
       </if>
       <if test="articleDate != null" >
         #{articleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleStatus != null" >
+        #{articleStatus,jdbcType=INTEGER},
       </if>
       <if test="articleLikeCount != null" >
         #{articleLikeCount,jdbcType=INTEGER},
@@ -196,6 +205,9 @@
       <if test="record.articleDate != null" >
         article_date = #{record.articleDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.articleStatus != null" >
+        article_status = #{record.articleStatus,jdbcType=INTEGER},
+      </if>
       <if test="record.articleLikeCount != null" >
         article_like_count = #{record.articleLikeCount,jdbcType=INTEGER},
       </if>
@@ -213,6 +225,7 @@
       article_views = #{record.articleViews,jdbcType=INTEGER},
       article_comment_count = #{record.articleCommentCount,jdbcType=INTEGER},
       article_date = #{record.articleDate,jdbcType=TIMESTAMP},
+      article_status = #{record.articleStatus,jdbcType=INTEGER},
       article_like_count = #{record.articleLikeCount,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -239,6 +252,9 @@
       <if test="articleDate != null" >
         article_date = #{articleDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="articleStatus != null" >
+        article_status = #{articleStatus,jdbcType=INTEGER},
+      </if>
       <if test="articleLikeCount != null" >
         article_like_count = #{articleLikeCount,jdbcType=INTEGER},
       </if>
@@ -253,6 +269,7 @@
       article_views = #{articleViews,jdbcType=INTEGER},
       article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
       article_date = #{articleDate,jdbcType=TIMESTAMP},
+      article_status = #{articleStatus,jdbcType=INTEGER},
       article_like_count = #{articleLikeCount,jdbcType=INTEGER}
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>

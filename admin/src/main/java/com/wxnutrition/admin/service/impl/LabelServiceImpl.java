@@ -56,4 +56,10 @@ public class LabelServiceImpl implements LabelService {
         return labelMapper.updateByPrimaryKey(label);
     }
 
+    @Override
+    public List<Label> findAlllabels() {
+        List<Label> labelList = labelMapper.selectByExample(null);
+        return labelList;
+    }
+
 }

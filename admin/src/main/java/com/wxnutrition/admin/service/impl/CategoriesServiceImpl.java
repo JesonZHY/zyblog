@@ -56,4 +56,9 @@ public class CategoriesServiceImpl implements CategoriesService {
         return categoriesMapper.updateByPrimaryKey(categories);
     }
 
+    @Override
+    public List<Categories> findAllcategories() {
+        return categoriesMapper.selectByExample(null);
+    }
+
 }

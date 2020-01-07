@@ -565,6 +565,66 @@ public class ArticlesExample {
             return (Criteria) this;
         }
 
+        public Criteria andArticleStatusIsNull() {
+            addCriterion("article_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusIsNotNull() {
+            addCriterion("article_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusEqualTo(Integer value) {
+            addCriterion("article_status =", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotEqualTo(Integer value) {
+            addCriterion("article_status <>", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusGreaterThan(Integer value) {
+            addCriterion("article_status >", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("article_status >=", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusLessThan(Integer value) {
+            addCriterion("article_status <", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("article_status <=", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusIn(List<Integer> values) {
+            addCriterion("article_status in", values, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotIn(List<Integer> values) {
+            addCriterion("article_status not in", values, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusBetween(Integer value1, Integer value2) {
+            addCriterion("article_status between", value1, value2, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("article_status not between", value1, value2, "articleStatus");
+            return (Criteria) this;
+        }
+
         public Criteria andArticleLikeCountIsNull() {
             addCriterion("article_like_count is null");
             return (Criteria) this;

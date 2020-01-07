@@ -20,4 +20,7 @@ public interface LabelService {
     Label findOne(String labelId);
 
     int updatelabelStatus(String labelId, String labelStatus);
+
+    List<Label> findAlllabels();
+
 }
